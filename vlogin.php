@@ -100,7 +100,7 @@
 		
 		
 		if(	$create_email_error == "" && $create_password_error == ""){
-			echo "Voib kasutajat luua! Kasutajanimi on ".$create_email." ja parool on ".$create_password;
+			echo "Saab kasutajat luua! Kasutajanimi on ".$create_email." ja parool on ".$create_password;
 			
 			$password_hash = hash("sha512", $create_password);
 			echo "<br>";
