@@ -15,7 +15,13 @@
 
 	?>
 	
-<h2>Avaleht</h2>
+<h2>Kasulik avaleht</h2>
 
 
-<?php require_once ("footer.php"); ?>
+<?php 
+      
+	 // kopeerime footer.php sisu
+	   
+     require_once ("footer.php"); 
+	 
+?>

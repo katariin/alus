@@ -21,6 +21,6 @@
 	    echo "<li>Logi sisse</li>";
 		
    }else{
-         echo '<li><a href ="login.php">Logi sisse</li>' ;
+         echo '<li><a href ="loginv.php">Logi sisse</li>' ;
    }
    ?>
