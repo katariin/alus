@@ -17,7 +17,7 @@
    
    <?php
    
-   if($file_name == "login.php") {
+   if($file_name == "loginv.php") {
 	    echo "<li>Logi sisse</li>";
 		
    }else{
