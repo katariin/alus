@@ -11,6 +11,7 @@
 	$create_password_error = "";		 
 	
 	//Teen vaartuse muutujad
+	$age = "";
 	$name ="";
 	$lastname="";
 	$email = "";
@@ -73,28 +74,34 @@
 		
 		if ( empty($_POST["create_email"]) ) {
 			$create_email_error = "E-mail on kohustuslik";
-		  }else{
+		}else{
 			$create_email = test_input($_POST["create_email"]);
 		}
 		
 		if ( empty($_POST["create_password"]) ) {
 			$create_password_error = "See vali on kohustuslik";
-		  }else{
+		}else{
 			if(strlen($_POST["create_password"]) < 8) {
 				$create_password_error = "Peab olema vahemalt 8 tahemarki pikk!";
 			}else{
 				$create_password = test_input($_POST["create_password"]);
 			}
 		}
+		if (empty($_POST["age"])) {
+			$age= " ";
+		}else{
+			$age = test_input($_POST["age"]);   
+		}
+		
 		if ( empty($_POST["gender"]) ) {
 			$gender_error = "See vali on kohustuslik";
-		  }else{
+		}else{
 			$gender = test_input($_POST["gendrer"]);
 		}
 		
 		if ( empty($_POST["comment"]) ) {
 			$comment = " ";
-		  }else{
+		}else{
 			$comment = test_input($_POST["commet"]);
 		}
 		
@@ -134,8 +141,8 @@
 
   <h2>Log in</h2>
   <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post" >
-  	<input name="email" type="email" placeholder="E-post" value="<?php echo $email; ?>"> <?php echo $email_error; ?><br><br>
-  	<input name="password" type="password" placeholder="Parool" value="<?php echo $password; ?>"> <?php echo $password_error; ?><br><br>
+  	E-mail: <input name="email" type="email" placeholder="E-post" value="<?php echo $email; ?>"> <?php echo $email_error; ?><br><br>
+  	Parool: <input name="password" type="password" placeholder="Parool" value="<?php echo $password; ?>"> <?php echo $password_error; ?><br><br>
   	<input type="submit" name="login" value="Login">
   </form>
 
@@ -146,7 +153,8 @@
 	Perekonnanimi: <input name="lastname" type="text" placeholder="Perekonnanimi"><br><br>
 	E-mail: <input name="create_email" type="email" placeholder="E-post"> <span style ="color:red" class ="error">*<?php echo $create_email_error; ?> </span> <br><br>
 	Parool: <input name="create_password" type="password" placeholder="Parool"> <span style ="color:red" class ="error">*<?php echo $create_password_error; ?> </span> <br><br>
-  	Sugu: <input name="gender" type="radio" value="Naine">Female
+  	Vanus : <input name="age" type="text" placeholder="vanus" value="<?php echo $age; ?>"> <br><br>
+	Sugu: <input name="gender" type="radio" value="Naine">Female
           <input name="gender" type="radio" value="Mees">Male <span style ="color:red" class ="error">*<?php echo $gender_error; ?></span> <br><br>
 	Kommentaar: <textarea name="comment" rows="5" cols ="30"><br><br>
   	<input type="submit" name="create" value="Create">

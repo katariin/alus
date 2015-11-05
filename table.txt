@@ -1,0 +1,12 @@
+CREATE TABLE users (
+id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+name VARCHAR(100),
+lastname VARCHAR(100),
+email VARCHAR(150),
+password VARCHAR (100),
+age INT,
+gender VARCHAR(5),
+created TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+UNIQUE(email, gender)
+)
+
