@@ -46,7 +46,7 @@
 			if($password_error == "" && $email_error == ""){
 				echo "Saab sisse logida! Kasutajanimi on ".$email." ja parool on ".$password;
 			}
-		} // login if end
+		}
     // *********************
     // ** LOO KASUTAJA *****
     // *********************
@@ -123,11 +123,27 @@
   	$data = htmlspecialchars($data);
   	return $data;
   }
+
+
+
+
+    // siin kirjutame uut php koogdi  
+
+    /*
+	
+	//(kehtestame) m22rame email'i vigu
+	
+	set_error_handler("email_error", E_USER_WARNING);
+	
+	// vigu k2imapanek
+    $email != 0;
+	if(isset($email == 0"]){
+		
+		trigger_error("Vaartus peab olema vahemalt uhest t2htest", E_USER_WARNING);	
+	}
+	
+	*/
 ?>
-
-
-
-
 
 
 

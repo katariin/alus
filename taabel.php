@@ -2,9 +2,16 @@
 
 
           //taabel.php
-		  require_once("funktsioon6t.php");  
+		  require_once("funktsioon6t.php");
+          require_once("edit_function7t.php");
+
+         //kasutaja tahab midagi muuta
+		  if(isset($_POST["update"])){
+			  
+			  updateClothes($_POST["id"], $_POST["clothes"], $_POST["brand"], $_POST["size"], $_POST["color"]);
+		  }		  
 		  
-		  // kas kasutaja tahab kustutada
+		  //kasutaja tahab midagi kustutada
 		  if(isset($_GET["delete"])){
 			  
 			  //saadan kaasa id, mida kustutada

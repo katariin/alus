@@ -7,7 +7,7 @@
 	// loome uue funktsiooni
         function getClothes() {
 			
-			$mysqli = new mysqli($GLOBALS["servername"], $GLOBALS["server_username"], $GLOBALS["server_password"], $GLOBALS["dbname"]);
+			$mysqli = new mysqli($GLOBALS["servername"], $GLOBALS["server_username"], $GLOBALS["server_password"], $GLOBALS["database"]);
 			
 			$stmt = $mysqli->prepare("SELECT id, user_id, clothes, brand, size, color FROM fashion");
 			$stmt->bind_result($id, $user_id, $clothes, $brand, $size, $color_from_db);
