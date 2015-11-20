@@ -10,8 +10,8 @@
 			
 			$mysqli = new mysqli($GLOBALS["servername"], $GLOBALS["username"], $GLOBALS["password"], $GLOBALS["database"]);
 			
-			$stmt = $mysqli->prepare("INSERT INTO 'users' ('fname', 'lname', 'email', 'password', 'age', 'gender') VALUES ('Katarina', 'Merr', 'katmerr@gmail.com', '"md5("123kat")"', 21, 'N')");
-		$stmt->bind_param("ss", $name, $lastname, $create_email, $create_password_hash, $age, $gender);
+			$stmt = $mysqli->prepare("INSERT INTO 'users' ('fname', 'lname', 'email', 'password', 'age', 'gender') VALUES (?,?,?,?,?,?)");
+		$stmt->bind_param("ssssss", $name, $lastname, $create_email, $create_password_hash, $age, $gender);
 		$stmt->execute();
 		$stmt->close();
 		
@@ -51,8 +51,8 @@
 		// globals on muutuja koigist php failidest mis on uhendatud
 		$mysqli = new mysqli($GLOBALS["servername"], $GLOBALS["username"], $GLOBALS["password"], $GLOBALS["database"]);
 		
-		$stmt = $mysqli->prepare("INSERT INTO books (id, bookname, authorname, authorlastname, year) VALUES (?, 'Vee peal', 'Olavi', 'Ruitlane', '1982')");
-		$stmt->bind_param("iss", $_SESSION["id_from_dbname"], $bookname; $authorname; $authorlastname $year );
+		$stmt = $mysqli->prepare("INSERT INTO books (id, bookname, authorname, authorlastname, year) VALUES (?,?,?,?,?)");
+		$stmt->bind_param("isssi", $_SESSION["id_from_dbname"], $bookname, $authorname, $authorlastname, $year );
 		
 		$message = "";
 		

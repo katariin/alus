@@ -18,7 +18,7 @@
 	   
    }
    
-   $bookname = $authorname = $authorlastname = $year = $bookname_error = $authorname_error = $authorlastname_error = ;
+   $bookname = $authorname = $authorlastname = $year = $bookname_error = $authorname_error = $authorlastname_error = "";
    
    //kontrollime, kas on midagi tyhi
    

@@ -39,7 +39,7 @@
 					   //count($clothes_list) - massiiivi pikkus
 			for($i = 0; $i < count($clothes_list); $i++){
 						   
-						if (isset($_GET["edit"]) && $clothes_list[$i]->id == $GET["edit"]{
+						if (isset($_GET["edit"]) && $clothes_list[$i]->id == $GET["edit"]){
 							  //kasutajale muutmiseks
 							 echo"<tr>";
 							   echo "<form action='taabel.php' method='post'>";

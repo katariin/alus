@@ -172,8 +172,8 @@
   	Vanus : <input name="age" type="text" placeholder="vanus" value="<?php echo $age; ?>"> <br><br>
 	Sugu: <input name="gender" type="radio" value="Naine">Female
           <input name="gender" type="radio" value="Mees">Male <span style ="color:red" class ="error">*<?php echo $gender_error; ?></span> <br><br>
-	Kommentaar: <textarea name="comment" rows="5" cols ="30"><br><br>
-  	<input type="submit" name="create" value="Create">
+	Kommentaar: <textarea name="comment" rows="5" cols ="30"></textarea><br><br>
+  	 Submit:   <input type="submit" name="create" value="Create">
   </form>
 <body>
 <html>
