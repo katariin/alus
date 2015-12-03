@@ -47,12 +47,12 @@
 	}
 	
 	
-	function createBooks($bookname, $authorname, $authorlastname, $year){
+	function create($clothes, $brand, $size, $color){
 		// globals on muutuja koigist php failidest mis on uhendatud
 		$mysqli = new mysqli($GLOBALS["servername"], $GLOBALS["username"], $GLOBALS["password"], $GLOBALS["database"]);
 		
-		$stmt = $mysqli->prepare("INSERT INTO books (id, bookname, authorname, authorlastname, year) VALUES (?,?,?,?,?)");
-		$stmt->bind_param("isssi", $_SESSION["id_from_dbname"], $bookname, $authorname, $authorlastname, $year );
+		$stmt = $mysqli->prepare("INSERT INTO fashion (id, clothes, brand, size, color) VALUES (?,?,?,?,?)");
+		$stmt->bind_param("issis", $_SESSION["id_from_dbname"], $id, $clothes, $brand, $size, $color);
 		
 		$message = "";
 		

@@ -165,6 +165,7 @@
   <h2>Create user</h2>
   <p><span style ="color:red" class ="error"> * required field </span></p>
   <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post" >
+             <label>Eesnimi</label>
   	Eesnimi: <input name="name" type="text" placeholder="Eesnimi"><span style ="color:red" class ="error">**<?php echo $name_error; ?></span><br><br>
 	Perekonnanimi: <input name="lastname" type="text" placeholder="Perekonnanimi"><br><br>
 	E-mail: <input name="create_email" type="email" placeholder="E-post"> <span style ="color:red" class ="error">*<?php echo $create_email_error; ?> </span> <br><br>

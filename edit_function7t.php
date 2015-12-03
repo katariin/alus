@@ -37,7 +37,7 @@
 	   function updateClothes($id, $clothes, $brand, $size, $color){
 	   $mysqli = new mysqli($GLOBALS["servername"], $GLOBALS["server_username"], $GLOBALS["server_password"], $GLOBALS["database"]);
 	   $stmt = $mysqli->prepare("UPDATE fashion SET clothes=?, brand=?, size=?, color=? WHERE id=?");
-	   $stmt->bind_param("ssi", $clothes, $brand, $size, $color, $id);
+	   $stmt->bind_param("sssi", $clothes, $brand, $size, $color, $id);
 	   
 	    // kas 6nnestus salvestada
 	   

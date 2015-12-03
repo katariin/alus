@@ -18,7 +18,7 @@
 	   
    }
    
-   $bookname = $authorname = $authorlastname = $year = $bookname_error = $authorname_error = $authorlastname_error = "";
+   $clothes = $brand = $size = $color = $clotes_error = $brand_error = $size_error = $color_error = "";
    
    //kontrollime, kas on midagi tyhi
    
@@ -26,41 +26,41 @@
 		
 		echo "vajutas create nuppu!";
 		
-		if ( empty($_POST["book_name"]) ) {
-			$bookname_error = "See vali on kohustuslik";
+		if ( empty($_POST["clothes"]) ) {
+			$clothes_error = "See vali on kohustuslik";
 		}else{
-			$bookname= cleanInput($_POST["book_name"]);
+			$clothes= cleanInput($_POST["clothes"]);
 		}
 		
-		if ( empty($_POST["author_name"]) ) {
-			$authorname_error = "See vali on kohustuslik";
+		if ( empty($_POST["brand"]) ) {
+			$size_error = "See vali on kohustuslik";
 		}else{
-			$authorname = cleanInput($_POST["author_name"]);
+			$size = cleanInput($_POST["brand"]);
 		}
 		
-		if ( empty($_POST["author_lastname"]) ) {
-			$authorlastname_error = "See vali on kohustuslik";
+		if ( empty($_POST["size"]) ) {
+			$brand_error = "See vali on kohustuslik";
 		}else{
-			$authorlastname = cleanInput($_POST["author_lastname"]);
+			$brand = cleanInput($_POST["size"]);
 		}
 		
-		if ( empty($_POST["year"]) ) {
-			$year = "";
+		if ( empty($_POST["color"]) ) {
+			$color = "";
 		}else{
-			$year = cleanInput($_POST["year"]);
+			$color = cleanInput($_POST["color"]);
 		}
 		
-		if($bookname_error == "" && $authorname == ""){
+		if($clothes_error == "" && $size == ""){
 			
 			// functions.php failis k3ivime funktsiooni
 			//msg on message funktsioonist mis tagasi saadame
-			$msg=createBooks($bookname, $authorname, $authorlastname, $year);
+			$msg=createClothes($clothes, $brand, $size, $color);
 			
 			if($msg != ""){
 				//salvestamine
 				//teen tyhjaks input value's
-				$bookname="";
-				$authorname="";
+				$clothes="";
+				$size="";
 				
 				echo $msg;
 			}
@@ -84,16 +84,16 @@
   <a href= "?logout=1" >Logi valja</a>
 </p>
 
-<h2>Lisa auto</h2>
+<h2>Lisa riietus</h2>
   <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post" >
-   <label for="bookname" >Raamatu nimetus</label><br>
-  <input id="bookname" name="book_name" type="text" value="<?=$bookname; ?>"> <?=$bookname_error; ?><br><br>
-    <label>Autori nimi</label><br>
-  <input name="author_name" type="text" value="<?=$authorname; ?>"> <?=$authorname_error; ?><br><br>
-    <label>Autori perekonnanimi</label><br>
-  <input name="author_lastname" type="text" value="<?=$authorlastname; ?>"> <?=$authorastname_error; ?><br><br>
-    <label>Raamatu publitseerimise aasta</label><br>
-  <input name="year" type="text" value="<?=$year; ?>"><br><br>
+   <label for="clothes" >Riietus</label><br>
+  <input id="clothes" name="clothes" type="text" value="<?=$clothes; ?>"> <?=$clothes_error; ?><br><br>
+    <label>Brand</label><br>
+  <input name="brand" type="text" value="<?=$brand; ?>"> <?=$brand_error; ?><br><br>
+    <label>Suurus</label><br>
+  <input name="size" type="text" value="<?=$size; ?>"> <?=$size_error; ?><br><br>
+    <label>Värv</label><br>
+  <input name="color" type="text" value="<?=$color; ?>"><br><br>
   <input type="submit" name="create" value="save">
   </form>
   
