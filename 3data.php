@@ -4,19 +4,20 @@
    require_once("2function.php");
    
    // kas kasutaja on sisse loginud
-   if(!isset($_SESSION["id_from_dbname"])) {
+   if(!isset($_SESSION["id_from_db"])) {
 	   //suudan data lehel
-	   header("Location: loginv.php");
+	   header("Location: vlogin.php");
    }
    //login v2lja
    if(isset($_GET["logout"])){
 	   // kustutab k6ik sessiooni muutujad
 	   session_destroy();
 	   
-	   
-	   header("Location: loginv.php");
-	   
-   }
+ 
+	   header("Location: vlogin.php");
+	}   
+   
+	
    
    $clothes = $brand = $size = $color = $clotes_error = $brand_error = $size_error = $color_error = "";
    
@@ -50,17 +51,18 @@
 			$color = cleanInput($_POST["color"]);
 		}
 		
-		if($clothes_error == "" && $size == ""){
+		if($clothes_error == "" && $size_error == "" && $brand_error == "" ){
 			
 			// functions.php failis k3ivime funktsiooni
 			//msg on message funktsioonist mis tagasi saadame
-			$msg=createClothes($clothes, $brand, $size, $color);
+			$msg = createClothes ($clothes, $brand, $size);
 			
 			if($msg != ""){
 				//salvestamine
 				//teen tyhjaks input value's
 				$clothes="";
 				$size="";
+				$brand = "";
 				
 				echo $msg;
 			}

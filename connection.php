@@ -7,7 +7,7 @@
 		      while (($row = result_set->fetch_assoc()) != false) {
 			     echo $row;    
 				 echo "<br>"
-			  }
+			   }
 			  
 		 }
 		 
@@ -15,7 +15,7 @@
 		 // posqlaem zapros
 		 $mysqli->query ("SET NAMES 'utf8'");
 		 
-		 $mysqli->query ("INSERT INTO 'users' ('fname', 'lname', 'email', 'password', 'age', 'gender') VALUES ('Katarina', 'Merr', 'katmerr@gmail.com', '"md5("123kat")"', 21, 'N')");
+		 $mysqli->query ("INSERT INTO 'users' ('name', 'lastname', 'email', 'password', 'age', 'gender') VALUES ('Katarina', 'Merr', 'katmerr@gmail.com', '"md5("123kat")"', 21, 'N')");
 		 
 		 
 		 // chtobq dobavitj 10 polzovatelej

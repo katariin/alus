@@ -17,10 +17,10 @@
    
    <?php
    
-   if($file_name == "loginv.php") {
+   if($file_name == "vlogin.php") {
 	    echo "<li>Logi sisse</li>";
 		
    }else{
-         echo '<li><a href ="loginv.php">Logi sisse</li>' ;
+         echo '<li><a href ="vlogin.php">Logi sisse</li>' ;
    }
    ?>

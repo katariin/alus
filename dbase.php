@@ -1,6 +1,6 @@
 <?php
      //configglobal
     $servername = "localhost";
-	$username = "if15";
-	$password = "ifikad15";
+	$server_username = "if15";
+	$server_password = "ifikad15";
 ?>

@@ -6,12 +6,13 @@
 	 session_start();
 	 
 	// loome uue funktsiooni
-        function createUser($name, $lastname, $create_email, $create_password_hash, $age, $gender, $comment){ {
+       function createUser($name, $lastname, $create_email, $create_password_hash, $age, $gender) {
 			
-			$mysqli = new mysqli($GLOBALS["servername"], $GLOBALS["username"], $GLOBALS["password"], $GLOBALS["database"]);
+		$mysqli = new mysqli($GLOBALS["servername"], $GLOBALS["server_username"], $GLOBALS["server_password"], $GLOBALS["database"]);
 			
-			$stmt = $mysqli->prepare("INSERT INTO 'users' ('fname', 'lname', 'email', 'password', 'age', 'gender') VALUES (?,?,?,?,?,?)");
-		$stmt->bind_param("ssssss", $name, $lastname, $create_email, $create_password_hash, $age, $gender);
+		$stmt = $mysqli->prepare("INSERT INTO users (name, lastname, email, password, age, gender) VALUES (?,?,?,?,?,?)");
+		echo $mysqli->error;
+		$stmt->bind_param("ssssis", $name, $lastname, $create_email, $create_password_hash, $age, $gender);
 		$stmt->execute();
 		$stmt->close();
 		
@@ -21,11 +22,11 @@
 	//logime sisse
 	function loginUser($email, $password_hash){
 		
-		$mysqli = new mysqli($GLOBALS["servername"], $GLOBALS["username"], $GLOBALS["password"], $GLOBALS["database"]);
+		$mysqli = new mysqli($GLOBALS["servername"], $GLOBALS["server_username"], $GLOBALS["server_password"], $GLOBALS["database"]);
 		
-		$stmt = $mysqli->prepare("SELECT id, email FROM users WHERE email=?");
-		$stmt->bind_param("ss", $email, $password_hash);
-		$stmt->bind_result($id_from_dbname, $email_from_dbname);
+		$stmt = $mysqli->prepare("SELECT id, email FROM users WHERE id=? AND email = ?");
+		$stmt->bind_param("is", $id, $email);
+		$stmt->bind_result($id, $email_from_dbname);
 		$stmt->execute();
 		
 		if($stmt->fetch()){
@@ -71,7 +72,7 @@
 		
 	}
 
-	    }
+	    
 		
 		
 		

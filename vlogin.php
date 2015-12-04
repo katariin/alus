@@ -1,5 +1,35 @@
 <?php
 
+    
+	//laeme funktsiooni failis
+	require_once("2function.php");
+	
+	//kontrollin, kas kasutaja on sisseloginud
+	if(isset($_SESSION["id_from_db"])){
+		// suunan data lehele
+		header("Location: 3data.php");
+	}
+	
+	 ?>
+	
+<?php
+	require_once("config.php");
+	require_once("Class.php");
+	
+	$database = "if15_jekavor";
+	
+	
+	//loome ab'i ühenduse
+	$mysqli = new mysqli($servername, $server_username, $server_password, $database);
+	
+	//Uus instants klassist User
+	$User = new User($mysqli);
+	
+	
+ ?>
+	 
+	<?php
+
      // Teen errori muutujad
 	      //siiselogimine
 	$email_error = "";
@@ -45,8 +75,33 @@
       // Kui oleme siia joudnud, voime kasutaja sisse logida
 			if($password_error == "" && $email_error == ""){
 				echo "Saab sisse logida! Kasutajanimi on ".$email." ja parool on ".$password;
+				
+				$password_hash = hash("sha512", $password);
+				echo $password_hash;
+				$login_response = $User->loginUser($email, $password_hash);
+				
+				
+				
+				if(isset($login_response->success)){
+					
+					// läks edukalt, nüüd peaks kasutaja sessiooni salvestama
+					$_SESSION["id_from_db"] = $login_response->success->user->id;
+					$_SESSION["user_email"] = $login_response->success->user->email;
+					
+					header("Location: 3data.php");
+					
+					exit();
+					
+					
+				}
+				
 			}
 		}
+				
+				
+				
+			
+		
     // *********************
     // ** LOO KASUTAJA *****
     // *********************
@@ -57,7 +112,7 @@
 		if (empty($_POST["name"]) ) {
 			$name_error = "Nimi on kohustuslik";
 		  }else{
-			$name= test_input($_POST["name"]);
+			$name = test_input($_POST["name"]);
 		}
 		      //Kontrollime, kas nimi sisaldab ainult t2hed
 			  
@@ -96,15 +151,15 @@
 		if ( empty($_POST["gender"]) ) {
 			$gender_error = "See vali on kohustuslik";
 		}else{
-			$gender = test_input($_POST["gendrer"]);
+			$gender = test_input($_POST["gender"]);
 		}
 		
 		if ( empty($_POST["comment"]) ) {
 			$comment = " ";
 		}else{
-			$comment = test_input($_POST["commet"]);
+			$comment = test_input($_POST["comment"]);
 		}
-		
+		echo "romil";
 		
 		if(	$create_email_error == "" && $create_password_error == ""){
 			echo "Saab kasutajat luua! Kasutajanimi on ".$create_email." ja parool on ".$create_password;
@@ -112,10 +167,18 @@
 			$password_hash = hash("sha512", $create_password);
 			echo "<br>";
 			echo $password_hash;
+			
+			//createUser($name, $lastname, $create_email, $password_hash, $age, $gender);
+			
+	              /*  $stmt = $mysqli->prepare("INSERT INTO users (name, lastname, email, password, age, gender) VALUES (?, ?, ?, ?, ?, ?)");
+					$stmt->bind_param("ssssis", $name, $lastname, $create_email, $create_password, $age, $gender);
+					$stmt->execute();
+					$stmt->close(); */
+					$create_response = $User->createUser($name, $lastname, $create_email, $password_hash, $age, $gender);
       }
     } // create if end
 	}
-	
+
   // funktsioon, mis eemaldab koikvoimaliku uleliigse tekstist
   function test_input($data) {
   	$data = trim($data);
@@ -147,13 +210,31 @@
 
 
 
-
 <!DOCTYPE html>
 <html>
 <head>
   <title>Login</title>
 </head>
 <body>
+
+
+
+  <?php if(isset($login_response->error)): ?>
+  
+	<p style="color:red;">
+		<?=$login_response->error->message;?>
+	</p>
+  
+  <?php elseif(isset($login_response->success)): ?>
+  
+	<p style="color:green;">
+		<?=$login_response->success->message;?>
+	</p>
+  
+  <?php endif; ?>  
+
+
+
 
   <h2>Log in</h2>
   <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post" >
@@ -162,10 +243,29 @@
   	<input type="submit" name="login" value="Login">
   </form>
 
+  
+  
+  
+   
+  <?php if(isset($create_response->error)): ?>
+  
+	<p style="color:red;">
+		<?=$create_response->error->message;?>
+	</p>
+  
+  <?php elseif(isset($create_response->success)): ?>
+  
+	<p style="color:green;">
+		<?=$create_response->success->message;?>
+	</p>
+  
+  <?php endif; ?>  
+  
+  
+  
   <h2>Create user</h2>
   <p><span style ="color:red" class ="error"> * required field </span></p>
   <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post" >
-             <label>Eesnimi</label>
   	Eesnimi: <input name="name" type="text" placeholder="Eesnimi"><span style ="color:red" class ="error">**<?php echo $name_error; ?></span><br><br>
 	Perekonnanimi: <input name="lastname" type="text" placeholder="Perekonnanimi"><br><br>
 	E-mail: <input name="create_email" type="email" placeholder="E-post"> <span style ="color:red" class ="error">*<?php echo $create_email_error; ?> </span> <br><br>

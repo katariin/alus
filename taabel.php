@@ -20,7 +20,7 @@
 		  }
 		  
 		  
-         $clothes_list=getClothes()
+         $clothes_list=getClothes();
 		  
 ?>		  
 
@@ -65,7 +65,7 @@
 						   echo "<td>". $clothes_list[$i]->size."</td>";
 						   echo "<td>". $clothes_list[$i]->color."</td>";
 						   echo "<td><a href='?delete=". $clothes_list[$i]->id."'>X</a></td>";
-						   echo "<td><a href='?edit=".$clothes_list[$i]->id."'>edit</a></td>";
+						   echo "<td><a href='?edit=". $clothes_list[$i]->id."'>edit</a></td>";
 			
 				
 						   echo"</tr>";
