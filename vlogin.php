@@ -10,7 +10,7 @@
 		header("Location: 3data.php");
 	}
 	
-	 ?>
+?>
 	
 <?php
 	require_once("config.php");
@@ -159,9 +159,8 @@
 		}else{
 			$comment = test_input($_POST["comment"]);
 		}
-		echo "romil";
 		
-		if(	$create_email_error == "" && $create_password_error == ""){
+		if(	$name = "" && $lastname = "" && $create_email_error == "" && $create_password_error == "" && $gender = ""){
 			echo "Saab kasutajat luua! Kasutajanimi on ".$create_email." ja parool on ".$create_password;
 			
 			$password_hash = hash("sha512", $create_password);
@@ -174,7 +173,7 @@
 					$stmt->bind_param("ssssis", $name, $lastname, $create_email, $create_password, $age, $gender);
 					$stmt->execute();
 					$stmt->close(); */
-					$create_response = $User->createUser($name, $lastname, $create_email, $password_hash, $age, $gender);
+					$create_response = $User->createUser($name, $lastname, $create_email, $password_hash, $gender);
       }
     } // create if end
 	}
