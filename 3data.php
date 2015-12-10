@@ -81,62 +81,18 @@
    
   
 
-?>
-<?php
+  
     
-	$ClothesManager = new ClothesManager($mysqli);
+	//$ClothesManager = new ClothesManager($mysqli);
 	
-	if(isset($_GET["create"])){
+	//if(isset($_GET["clothes"])){
 		
-		$added_clothes = $ClothesManager->addClothes($_GET["create"])
-	}
+		//$added_clothes = $ClothesManager->addClothes($_GET["create"])
+	//}
 
 ?>
 
-<p>
-  Tere, <?php echo $_SESSION["email"];?>
-  <a href= "?logout=1" >Logi valja</a>
-</p>
 
- <?php if(isset($added_clothes->error)): ?>
-  
-	<p style="color:red;">
-		<?=$added_clothes->error->message;?>
-	</p>
-  
-  <?php elseif(isset($added_clothes->success)): ?>
-  
-	<p style="color:green;">
-		<?=$added_clothes->success->message;?>
-	</p>
-  
-  <?php endif; ?>  
-<form>
-	<input name="new_clothes">
-	<input type="submit">
-</form>
-
-<h2>Minu riided</h2>
-<form>
-<?php if(isset($added_user_clothes->error)): ?>
-  
-	<p style="color:red;">
-		<?=$added_user_clothes->error->message;?>
-	</p>
-  
-  <?php elseif(isset($added_user_clothes->success)): ?>
-  
-	<p style="color:green;">
-		<?=$added_user_clothes->success->message;?>
-	</p>
-  
-  <?php endif; ?>  
-	<!-- SIIA TULEB RIPPMENÜÜ -->
-	<?php echo $ClothesManager->createDropdown();?>
-	<input type="submit">
-</form>
-
-<p><?php echo $ClothesManager->getUserClothes($_SESSION["id_from_db"]);?></p>
 
 <h2>Lisa riietus</h2>
   <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post" >
