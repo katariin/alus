@@ -8,8 +8,6 @@
 	   //suudan data lehel
 	   header("Location: vlogin.php");
    }
-   
-      exit();
    //login v2lja
    if(isset($_GET["logout"])){
 	   // kustutab k6ik sessiooni muutujad
@@ -21,7 +19,7 @@
    
 	
    
-   $clothes = $brand = $size = $color = $clotes_error = $brand_error = $size_error = $color_error = "";
+   $clothes = $brand = $size = $color = $clothes_error = $brand_error = $size_error = $color_error = "";
    
    //kontrollime, kas on midagi tyhi
    
@@ -57,7 +55,7 @@
 			
 			// functions.php failis k3ivime funktsiooni
 			//msg on message funktsioonist mis tagasi saadame
-			$msg = createClothes ($clothes, $brand, $size);
+			$msg = createClothes($clothes, $brand, $size, $color);
 			
 			if($msg != ""){
 				//salvestamine
@@ -65,6 +63,7 @@
 				$clothes="";
 				$size="";
 				$brand = "";
+				$color = "";
 				
 				echo $msg;
 			}
@@ -81,18 +80,12 @@
    
   
 
-  
-    
-	//$ClothesManager = new ClothesManager($mysqli);
-	
-	//if(isset($_GET["clothes"])){
-		
-		//$added_clothes = $ClothesManager->addClothes($_GET["create"])
-	//}
-
 ?>
 
-
+<p>
+  Tere, <?php echo $_SESSION["user_email"];?>
+  <a href= "?logout=1" >Logi valja</a>
+</p>
 
 <h2>Lisa riietus</h2>
   <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post" >

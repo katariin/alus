@@ -14,7 +14,7 @@
 	
 <?php
 	require_once("config.php");
-	//require_once("Class.php");
+	require_once("Class.php");
 	
 	$database = "if15_jekavor";
 	

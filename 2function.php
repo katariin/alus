@@ -48,18 +48,18 @@
 	}
 	
 	
-	function create($clothes, $brand, $size, $color){
+	function createClothes($clothes, $brand, $size, $color){
 		// globals on muutuja koigist php failidest mis on uhendatud
-		$mysqli = new mysqli($GLOBALS["servername"], $GLOBALS["username"], $GLOBALS["password"], $GLOBALS["database"]);
+		$mysqli = new mysqli("localhost", "if15_jekavor", "ifikad15", "fashion");
 		
-		$stmt = $mysqli->prepare("INSERT INTO fashion (id, clothes, brand, size, color) VALUES (?,?,?,?,?)");
-		$stmt->bind_param("issis", $_SESSION["id_from_dbname"], $id, $clothes, $brand, $size, $color);
-		
-		$message = "";
+		$stmt = $mysqli->prepare("INSERT INTO fashion (clothes, brand, size, color) VALUES (?,?,?,?)");
+		$stmt->bind_param("issis", $_SESSION["id_from_db"], $clothes, $brand, $size, $color);
+		$stmt->bind_result($clothes, $brand, $size, $color);
+		$msg = "";
 		
 		if($stmt->execute()){
 			// see on toene siis kui sisestus ab'i onnestus
-			$message = "Edukalt sisestatud andmebaasi";
+			$msg = "Edukalt sisestatud andmebaasi";
 			
 		}else{
 			// execute on false, miski laks katki
