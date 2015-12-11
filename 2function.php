@@ -50,11 +50,11 @@
 	
 	function createClothes($clothes, $brand, $size, $color){
 		// globals on muutuja koigist php failidest mis on uhendatud
-		$mysqli = new mysqli("localhost", "if15_jekavor", "ifikad15", "fashion");
+		$mysqli = new mysqli("localhost", "if15", "ifikad15", "if15_jekavor");
 		
-		$stmt = $mysqli->prepare("INSERT INTO fashion (clothes, brand, size, color) VALUES (?,?,?,?)");
+		$stmt = $mysqli->prepare("INSERT INTO fashion (user_id, clothes, brand, size, color) VALUES (?,?,?,?,?)");
 		$stmt->bind_param("issis", $_SESSION["id_from_db"], $clothes, $brand, $size, $color);
-		$stmt->bind_result($clothes, $brand, $size, $color);
+		//$stmt->bind_result($clothes, $brand, $size, $color);
 		$msg = "";
 		
 		if($stmt->execute()){
@@ -68,7 +68,7 @@
 		
 		$stmt->close();
 		$mysqli->close();
-		return $message;
+		return $msg;
 		
 	}
 

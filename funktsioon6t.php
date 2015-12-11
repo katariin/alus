@@ -10,7 +10,7 @@
 			$mysqli = new mysqli($GLOBALS["servername"], $GLOBALS["server_username"], $GLOBALS["server_password"], $GLOBALS["database"]);
 			
 			$stmt = $mysqli->prepare("SELECT id, user_id, clothes, brand, size, color FROM fashion");
-			$stmt->bind_result($id, $user_id, $clothes, $brand, $size, $color_from_db);
+			$stmt->bind_result($id, $user_id, $clothes, $brand, $size, $color);
 			$stmt->execute();
 			
 			//tyhi  massiv kus hoiame objekte
@@ -21,7 +21,7 @@
 				 // loon objekte
 				$mode= new StdClass();
 				$mode->id=$id;
-				$mode->user_id = $uder_id;
+				$mode->user_id = $user_id;
 				$mode->clothes = $clothes;
 				$mode->brand = $brand;
 				$mode->size = $size;

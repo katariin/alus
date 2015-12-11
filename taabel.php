@@ -8,15 +8,19 @@
          //kasutaja tahab midagi muuta
 		  if(isset($_POST["update"])){
 			  
-			  updateClothes($_POST["id"], $_POST["clothes"], $_POST["brand"], $_POST["size"], $_POST["color"]);
+			  updateClothes($_POST["id"], $_POST["user_id"], $_POST["clothes"], $_POST["brand"], $_POST["size"], $_POST["color"]);
 		  }		  
 		  
 		  //kasutaja tahab midagi kustutada
 		  if(isset($_GET["delete"])){
 			  
 			  //saadan kaasa id, mida kustutada
-			  deleteClothes($_GET["delete"]);
 			  
+			  function deleteClothes(){
+				  
+			  }
+			  
+			  deleteClothes($_GET["delete"]);
 		  }
 		  
 		  
@@ -39,13 +43,15 @@
 					   //count($clothes_list) - massiiivi pikkus
 			for($i = 0; $i < count($clothes_list); $i++){
 						   
-						if (isset($_GET["edit"]) && $clothes_list[$i]->id == $GET["edit"]){
+						if (isset($_GET["edit"]) && $clothes_list[$i]->id == $_GET["edit"]){
 							  //kasutajale muutmiseks
 							 echo"<tr>";
 							   echo "<form action='taabel.php' method='post'>";
 							   echo"<form>";
 							           echo "<td>". $clothes_list[$i]->id."</td>";
 						               echo "<td>". $clothes_list[$i]->user_id."</td>";
+									   echo "<td><input name='id' value='" . $clothes_list[$i]->id."'></td>";
+									   echo "<td><input name='user_id' value='" . $clothes_list[$i]->user_id."'></td>";
 									   echo "<td><input name='clothes' value='" . $clothes_list[$i]->clothes."'></td>";
 									   echo "<td><input name='brand' value='" . $clothes_list[$i]->brand."'></td>";
                                        echo "<td><input name='size' value='" . $clothes_list[$i]->size."'></td>";

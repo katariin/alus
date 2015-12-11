@@ -34,10 +34,10 @@
 	}
 	
 	
-	   function updateClothes($id, $clothes, $brand, $size, $color){
+	   function updateClothes($id, $user_id, $clothes, $brand, $size, $color){
 	   $mysqli = new mysqli($GLOBALS["servername"], $GLOBALS["server_username"], $GLOBALS["server_password"], $GLOBALS["database"]);
-	   $stmt = $mysqli->prepare("UPDATE fashion SET clothes=?, brand=?, size=?, color=? WHERE id=?");
-	   $stmt->bind_param("sssi", $clothes, $brand, $size, $color, $id);
+	   $stmt = $mysqli->prepare("UPDATE fashion SET user_id=?, clothes=?, brand=?, size=?, color=? WHERE id=?");
+	   $stmt->bind_param("iissis", $id, $user_id, $clothes, $brand, $size, $color);
 	   
 	    // kas 6nnestus salvestada
 	   
